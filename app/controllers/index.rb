@@ -3,22 +3,29 @@ get '/' do
 end
 
 get '/todos' do
-  p "SHIT"
   @todos = Todo.all
   erb :index
 end
 
 post '/todos' do
   if request.xhr?
-    p "working"
-    Todo.create(name: params[:name])
+    new_todo = Todo.create(name: params[:name])
+    erb :_delete, locals: {todo: new_todo}, layout: false
   else
-    p "breaking"
     redirect '/todos'
   end
 end
 
 
-get '/tasks/new' do
+get '/todos/new' do
   erb :_form, layout: false
+end
+
+delete '/todos/:id' do
+  if request.xhr?
+    Todo.find(params[:id]).destroy
+    return params[:id]
+  else
+    redirect '/todos'
+  end
 end

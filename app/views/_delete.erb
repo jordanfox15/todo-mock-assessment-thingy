@@ -1,0 +1,7 @@
+<div id="<%= todo.id %>">
+  <h3><%= todo.name %><h3>
+  <form id='delete_todo' action='/todos/<%= todo.id %>' method='post'>
+    <input type='hidden' method='_method' value='delete'>
+    <input type='submit' value='Delete'>
+  </form>
+</div>
