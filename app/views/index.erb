@@ -1,7 +1,9 @@
 <p><h1>TODO List</h1></p>
 <div id="TODO_area">
   <% @todos.each do |todo| %>
-    <h3><%= todo.name %><h3>
+      <%= erb :_delete, locals: {todo: todo}, layout: false %>
   <% end %>
-  <a id="new_todo" href="/tasks/new">New TODO</a>
+</div>
+<div>
+  <a id="new_todo" href="/todos/new">New TODO</a>
 </div>
